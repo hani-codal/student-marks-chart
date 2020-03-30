@@ -6,7 +6,8 @@ const routes: Routes = [
   {
     path: '',
     redirectTo :'student-form',
-  pathMatch :'full'    },
+    pathMatch :'full'  
+    },
   {
     path :'student-form',
     loadChildren :() =>import('./student-form/student-form.module').then(mod=>mod.StudentFormModule)

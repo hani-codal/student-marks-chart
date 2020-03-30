@@ -7,11 +7,20 @@ label{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .form-back{
-    background-color: #FBFCFC ;
+    /* background-color: #FBFCFC ; */
+    background-color: #90EFF0;
+    /* background-color: #80F9E5; */
+}
+.form-background{
+    
+}
+.Error{
+    color: red;
 }
 .btn-submit{
-    margin-left:400px ;
-    background-color:#3654D7   ;
+    margin-left:350px ;
+    /* background-color:#3654D7   ; */
+    background-color:#0A9D9B ;
     width: 100px;
     height: 50px;    
     border-radius: 5px;
@@ -20,6 +29,9 @@ label{
 .btn-lbl{
     color: white;
     height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 
 }
 input{
