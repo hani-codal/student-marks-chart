@@ -1,0 +1,24 @@
+.div-header{
+    margin-top: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+}
+.btn-submit{
+    float: right;
+    /* background-color:#3654D7   ; */
+    background-color:#0A9D9B ;
+    width: 150px;
+    height: 50px;    
+    border-radius: 5px;
+    border: none;
+}
+.btn-lbl{
+    color: white;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+}

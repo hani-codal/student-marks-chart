@@ -9,7 +9,8 @@ import {Student,Marks} from './student-form.model';
 export class StudentFormComponent {
   studentList: any[] = (JSON.parse(localStorage.getItem('StudentList'))) || [];
   //studentList: Student[] = (JSON.parse(localStorage.getItem('StudentList'))) || [];
-  // name :string;
+  // name :string[] = [];
+  name ="hani";
   // marks :Marks;
   submitValue = true;
   showError = false;
@@ -32,6 +33,11 @@ export class StudentFormComponent {
       })
     
     });
+    // this.studentList.forEach(e => {
+    //   this.name.push(e.name);
+    // });
+    // this.name = "hani";
+    console.log("nnnnn",this.name)
     // this.studentValue = this.fb.group({
     //     name : ['',Validators.required],
     //      AI : ['',Validators.required],
@@ -47,7 +53,8 @@ export class StudentFormComponent {
     this.submitted = true;
     console.log("list",this.studentList);
     this.studentList.push(this.studentValue.value);
-    
+    // this.name.push(this.studentValue.value.name);
+   // console.log("name",this.name)
     localStorage.setItem('StudentList',JSON.stringify(this.studentList));
     }
     checkAI(event){
