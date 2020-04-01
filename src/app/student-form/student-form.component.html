@@ -1,84 +1,58 @@
 <div class="row form-back">
     <div class="col-md-4"></div>
     <div class="col-md-4 div-top">
-        <form [formGroup]="studentValue" (ngSubmit)="onSubmit()">   
-            <div class="formbox" class = "form-background">
+        <form [formGroup]="studentValue" (ngSubmit)="onSubmit()">
+            <div class="formbox" >
                 <div class="form-group">
                     <label>Enter your Name :</label><br>
                     <input type="text" name="name" formControlName="name" class="form-control"
-                    (keyup)="getSubmitValue()"
-                        [ngClass]="{ 'is-invalid': submitted && fval.name.errors }" />
+                        (keyup)="getSubmitValue()" [ngClass]="{ 'is-invalid': submitted && fval.name.errors }" />
                     <div *ngIf="submitted && fval.name.errors" class="invalid-feedback">
                         <div *ngIf="fval.name.errors.required">
                             Name is required and must be a valid name
                         </div>
                     </div>
-                </div><br><br>
+                </div>                
+                <br><br>
                 <div formGroupName="marks">
-
                     <label>Enter your Marks :</label><br><br>
                     <div class="form-group">
                         <label>AI</label><br>
-                        <input type="number" name="AI-marks" formControlName="AI" class="form-control" minlength="1"
-                            maxlength="2" (keyup)="getSubmitValue() ;checkAI($event)"/>
-                        <!-- <div *ngIf="submitted && fval.AI.errors" class="invalid-feedback">
-                            <div *ngIf="fval.AI.errors.required">
-                                Name is required and must be a valid name
-                            </div>
-                        </div> -->
-                        <!-- <div *ngIf="submitted && fval.AI.errors" class="invalid-feedback">
-                            <div *ngIf="fval.AI.errors.required">Phone is required</div>
-                            </div> -->
-                            <div *ngIf = " AIError" class = "Error">
-                                *drop down your marks out of 60
-                            </div>
-                            </div>
+                        <input type="text" name="AI-marks" formControlName="AI" class="form-control" minlength="1"
+                            maxlength="2" (keyup)="getSubmitValue() ;checkAI($event)" />
+                        <div *ngIf=" AIError" class="Error">
+                            *drop down your marks out of 60
+                        </div>
+                    </div>
                     <br><br>
                     <div class="form-group">
                         <label>Python</label><br>
-                        <input type="number" name="Python-marks" formControlName="Python" class="form-control"
+                        <input type="text" name="Python-marks" formControlName="Python" class="form-control"
                             minlength="1" maxlength="2" (keyup)="getSubmitValue() ;checkPython($event)" />
-                        <!-- <div *ngIf="submitted && fval.Python.errors" class="invalid-feedback">
-                            <div *ngIf="fval.Python.errors.required">
-                                Name is required and must be a valid name
-                            </div>
-                        </div> -->
-                        <div *ngIf = "PyError" class = "Error">
+                        <div *ngIf="PyError" class="Error">
                             *drop down your marks out of 60
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label>Maths</label><br>
-                        <input type="number" name="Maths-marks" formControlName="Maths" class="form-control"
-                            minlength="1" maxlength="2" (keyup)="getSubmitValue();checkMaths($event)" />
-                        <!-- <div *ngIf="submitted && fval.Maths.errors" class="invalid-feedback">
-                            <div *ngIf="fval.Maths.errors.required">
-                                Name is required and must be a valid name
-                            </div>
-                        </div> -->
-                        <div *ngIf = "MaError" class = "Error">
+                        <input type="text" name="Maths-marks" formControlName="Maths" class="form-control" minlength="1"
+                            maxlength="2" (keyup)="getSubmitValue();checkMaths($event)" />
+                        <div *ngIf="MaError" class="Error">
                             *drop down your marks out of 60
                         </div>
                     </div><br><br>
                     <div class="form-group">
                         <label>Angular</label><br>
-                        <input type="number" name="Angular-marks" formControlName="Angular" class="form-control"
-                            minlength="1" maxlength="2" (keyup)="getSubmitValue();checkAngular($event)"/>
-                        <!-- <div *ngIf="submitted && fval.Angular.errors" class="invalid-feedback">
-                            <div *ngIf="fval.Angular.errors.required">
-                                Name is required and must be a valid name
-                            </div>
-                        </div> -->
-                        <div *ngIf = "NgError" class = "Error">
+                        <input type="text" name="Angular-marks" formControlName="Angular" class="form-control"
+                            minlength="1" maxlength="2" (keyup)="getSubmitValue();checkAngular($event)" />
+                        <div *ngIf="NgError" class="Error">
                             *drop down your marks out of 60
                         </div>
                     </div>
-                    </div>
                 </div>
-            
+            </div>
             <br><br>
-            <button type="submit" class="btn-submit btn-lbl " [disabled] = "submitValue" >Submit</button>
-
+            <button type="submit" class="btn-submit btn-lbl "  [disabled]="submitValue">Submit</button>
         </form>
     </div>
     <div class="col-md-4"></div>

@@ -1,0 +1,21 @@
+img{
+    margin-top:3px;
+     margin-right:8px
+     
+}
+.btn{
+    text-transform:none;
+    height: 75px;
+    width: 300px;
+    
+}
+.mar-div{
+    margin-top: 100px;
+}
+.lbl{
+    /* margin-top: 30px; */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+   
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder ,Validators, FormGroup } from '@angular/forms';
 import {Student,Marks} from './student-form.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-student-form',
   templateUrl: './student-form.component.html',
@@ -9,7 +10,8 @@ import {Student,Marks} from './student-form.model';
 export class StudentFormComponent {
   studentList: any[] = (JSON.parse(localStorage.getItem('StudentList'))) || [];
   //studentList: Student[] = (JSON.parse(localStorage.getItem('StudentList'))) || [];
-  // name :string;
+  // name :string[] = [];
+  //name ="hani";
   // marks :Marks;
   submitValue = true;
   showError = false;
@@ -19,8 +21,8 @@ export class StudentFormComponent {
   MaError = false;
   studentValue : FormGroup;
   submitted = false;
-  constructor(private fb: FormBuilder ){}
- 
+  constructor(private fb: FormBuilder ,private router: Router){}
+ //marks:any []=[];
   ngOnInit(){
     this.studentValue = this.fb.group({
       name : ['',Validators.required],
@@ -32,6 +34,12 @@ export class StudentFormComponent {
       })
     
     });
+    console.log(this.studentList)
+    // this.studentList.forEach(e => {
+    //   this.marks.push(e.marks);
+    // });
+    // this.name = "hani";
+    //console.log("nnnnn",this.marks)
     // this.studentValue = this.fb.group({
     //     name : ['',Validators.required],
     //      AI : ['',Validators.required],
@@ -39,16 +47,18 @@ export class StudentFormComponent {
     //       Maths : ['',Validators.required],
     //       Angular: ['',Validators.required]       
     //   });
-    // console.log("hani");
-    // console.log("value", this.studentValue.value.marks)
-    // console.log("list",this.studentList[0].Marks)
+    
   }
   onSubmit(){
     this.submitted = true;
     console.log("list",this.studentList);
     this.studentList.push(this.studentValue.value);
-    
+    // this.name.push(this.studentValue.value.name);
+   // console.log("name",this.name)
     localStorage.setItem('StudentList',JSON.stringify(this.studentList));
+    alert("successfully added");
+    window.location.assign(`/student-list`);  
+    
     }
     checkAI(event){
       console.log("marks",event.target.value)
