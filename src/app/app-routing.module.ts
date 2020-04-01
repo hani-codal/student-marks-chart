@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MarksChartComponent } from './student-form/marks-chart/marks-chart.component';
 import { StudentFormComponent } from './student-form/student-form.component';
+import { StudentListComponent } from './student-form/student-list/student-list.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
       },
   {
     path :'student-list',
-    component:MarksChartComponent},
+    component:StudentListComponent},
     
       {
     path :'student-list/student-form',

@@ -1,10 +1,10 @@
 <div>
-    <button class = "btn-submit btn-lbl " routerLink = "/student-form">Add Student</button>
+    <button class="btn-submit btn-lbl " routerLink="/student-form">Add Student</button>
 </div><br>
-<div class = "div-header">
+<div class="div-header">
     Student Information
 </div>
-<div>
+<div class = "div-left">
     <table>
         <thead>
             <th>Index</th>
@@ -12,9 +12,39 @@
             <th>Total</th>
         </thead>
         <tbody>
-            <td>
 
+            <td>
+                <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd">
+                    {{i+1}}
+                </div>
             </td>
+
+            <td>
+                <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd" >
+                    <button (click) = "displayMarks();showGraph(i)" data-toggle="tooltip" data-placement="bottom" title="click here to display marks">
+                    {{n}}
+                    </button>
+                </div>
+            </td>
+
+            <td>
+                <div *ngFor='let m of marksInput ' class="tdd">
+                    {{m}}
+                </div>
+            </td>
+
         </tbody>
     </table>
+</div>
+<div *ngIf ="showMarks" class = "div-right" >
+    
+    <google-chart #chart
+   [title]="title"
+   [type]="type"
+   [data]="data"
+   [columnNames]="columnNames"
+   [options]="options"
+   [width]="width"
+   [height]="height">
+</google-chart>
 </div>

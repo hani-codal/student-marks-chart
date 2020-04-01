@@ -8,12 +8,10 @@ label{
 }
 .form-back{
     /* background-color: #FBFCFC ; */
-    background-color: #90EFF0;
+    /* background-color: #90EFF0; */
     /* background-color: #80F9E5; */
 }
-.form-background{
-    
-}
+
 .Error{
     color: red;
 }
