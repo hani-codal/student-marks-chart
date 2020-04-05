@@ -4,6 +4,7 @@ import { StudentFormComponent } from './student-form.component';
 import { LoginComponent } from './auth/login/login.component';
 import { MarksChartComponent } from './marks-chart/marks-chart.component';
 
+import { StudentListComponent } from './student-list/student-list.component';
 
 const routes: Routes = [
   // {
@@ -14,10 +15,16 @@ const routes: Routes = [
   //   path:'student-list',
   //   component:MarksChartComponent
   // }
-  {
-    path:'student-list/student-form',
-    component:StudentFormComponent
-  }
+  // {
+  //   path:'student-list/student-form',
+  //   component:StudentListComponent
+  // }
+  ,
+  // { 
+  //   path: 'student-list',
+  //   component: StudentListComponent,
+  //   canActivate: [AuthGuard] 
+  // },
   
  
 ];

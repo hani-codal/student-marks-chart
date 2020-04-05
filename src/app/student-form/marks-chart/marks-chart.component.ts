@@ -16,9 +16,9 @@ export class MarksChartComponent implements OnInit {
   height = 400;
   type = 'LineChart';
   data : any[]=[];
-  columnNames = ["Name", "Marks"];
+  columnNames :any[];
   options = {
-    colors :['#0A9D9B'],   
+    colors:["#a52714", "#0000ff"],   
      hAxis: {
         title: 'Subject'
      },
@@ -43,14 +43,28 @@ export class MarksChartComponent implements OnInit {
   
   }
   showGraph(index){
+    let temp =index;
   this.title = this.nameInput[index]+"'s marks";
+  
   console.log("vvvvvv",(this.subjectMarks[index]["AI"]))
- this.data = [
-       ["AI",Number(this.subjectMarks[index]["AI"]) ],
-       ["Python", Number( this.subjectMarks[index]["Python"])],
-       ["Maths",  Number(this.subjectMarks[index]["Maths"])],
-       ["Angular",  Number(this.subjectMarks[index]["Angular"])],
-      
+  console.log("total ttal",this.marksInput[index]);
+  this.marksInput.forEach((element,i) => {
+    console.log("temp before",temp)
+    if(element>this.marksInput[index]){
+      temp = i;
+      console.log("temp afer",temp)
+    }
+    //console.log("i",i)
+    console.log(this.subjectMarks[10])
+  });
+  console.log("tempppp",temp)
+  this.columnNames = ["Name", this.nameInput[index]+"'s marks",this.nameInput[temp]+"'s marks"];
+  this.data = [
+       ["AI",Number(this.subjectMarks[index]["AI"]),Number(this.subjectMarks[temp]["AI"]) ],
+       ["Python", Number( this.subjectMarks[index]["Python"]), Number( this.subjectMarks[temp]["Python"])],
+       ["Maths",  Number(this.subjectMarks[index]["Maths"]), Number(this.subjectMarks[temp]["Maths"])],
+       ["Angular",  Number(this.subjectMarks[index]["Angular"]),Number(this.subjectMarks[temp]["Angular"])],
+
   ];
     
   }
