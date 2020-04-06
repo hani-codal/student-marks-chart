@@ -6,11 +6,9 @@ label{
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.form-back{
-    /* background-color: #FBFCFC ; */
-    /* background-color: #90EFF0; */
-    /* background-color: #80F9E5; */
-}
+/* .form-back{
+    background-color: green;
+} */
 
 .Error{
     color: red;
@@ -30,7 +28,6 @@ label{
     font-size: 15px;
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-
 }
 input{
     outline: none;

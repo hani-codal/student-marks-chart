@@ -21,12 +21,15 @@ export class AuthGuard implements CanActivate {
 
   if(localStorage.getItem('username')!= null){
     console.log("auth guard called....with authorised user ")
+    localStorage.removeItem('username') ;
+    console.log("item")
     return true;
-      }
+       
+  }
       else
       {
         this.router.navigate(['/admin']);
-        //return false;
+        return false;
       }
 
 

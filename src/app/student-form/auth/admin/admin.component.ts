@@ -24,6 +24,7 @@ export class AdminComponent implements OnInit {
       }
       else{
        this.msg ='Invalid username or password';
+       alert(this.msg)
       }
     }
 

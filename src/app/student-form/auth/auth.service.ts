@@ -48,6 +48,14 @@ getEmail(){
       return false;
     }
       }
-    
+    // checkLoggedUser(email :string){
+    //   if(email != ''){
+    //     localStorage.setItem('loggeduser',email);
+    //     return true;
+    //   }
+    //   else{
+    //     return false;
+    //   }
+    // }
  }
 

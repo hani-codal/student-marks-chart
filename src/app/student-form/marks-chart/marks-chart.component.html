@@ -32,12 +32,37 @@
                     {{m}}
                 </div>
             </td>
-
+           
+                
         </tbody>
     </table>
-</div>
-<div *ngIf ="showMarks" class = "div-right" >
     
+        <!-- <label>choose:</label>
+        <select id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select> -->
+</div>
+<select >
+    <option value = "hani">hani</option>
+    <!-- <option *ngFor = "let name of nameInput" [value] = "name">{{name}}</option> -->
+</select>
+<div *ngIf ="showMarks" class = "div-right" >
+   
+    <label class = "select-menu">Choose one of them for comparing your marks:</label>
+    <ng-select [items]="nameInput"
+              
+               placeholder="Select Student"
+               class = "select-menu"
+               [(ngModel)] = "selectTemp"
+               (change) = "selectedStudentMarks(selectTemp)"
+               
+               >
+    </ng-select>
+   
+       
     <google-chart #chart
    [title]="title"
    [type]="type"

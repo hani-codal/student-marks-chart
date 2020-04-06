@@ -5,7 +5,7 @@
             <div class="formbox" >
                 <div class="form-group">
                     <label>Enter your Name :</label><br>
-                    <input type="text" name="name" formControlName="name" class="form-control"
+                    <input type="text" name="name" formControlName="name" class="form-control "
                         (keyup)="getSubmitValue()" [ngClass]="{ 'is-invalid': submitted && fval.name.errors }" />
                     <div *ngIf="submitted && fval.name.errors" class="invalid-feedback">
                         <div *ngIf="fval.name.errors.required">
@@ -51,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            
             <br><br>
             <button type="submit" class="btn-submit btn-lbl "  [disabled]="submitValue">Submit</button>
         </form>
