@@ -4,72 +4,128 @@
 <div class="div-header">
     Student Information
 </div>
-<div class = "div-left">
-    <table>
-        <thead>
-            <th>Index</th>
-            <th>Name</th>
-            <th>Total</th>
-        </thead>
-        <tbody>
+<div class="row ">
+    <div class="col-md-4 div-left">
+        <div>
+            <table>
+                <thead>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Total</th>
+                </thead>
+                <tbody>
 
-            <td>
-                <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd">
-                    {{i+1}}
-                </div>
-            </td>
+                    <td>
+                        <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd">
+                            {{i+1}}
+                        </div>
+                    </td>
 
-            <td>
-                <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd" >
-                    <button (click) = "displayMarks();showGraph(i)" data-toggle="tooltip" data-placement="bottom" title="click here to display marks">
-                    {{n}}
-                    </button>
-                </div>
-            </td>
+                    <td>
+                        <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd">
+                            <button (click)="displayMarks();showGraph(i)" data-toggle="tooltip" data-placement="bottom"
+                                title="click here to display marks">
+                                {{n}}
+                            </button>
+                        </div>
+                    </td>
 
-            <td>
-                <div *ngFor='let m of marksInput ' class="tdd">
-                    {{m}}
-                </div>
-            </td>
-           
-                
-        </tbody>
-    </table>
-    
-        <!-- <label>choose:</label>
+                    <td>
+                        <div *ngFor='let m of marksInput ' class="tdd">
+                            {{m}}
+                        </div>
+                    </td>
+
+
+                </tbody>
+            </table>
+
+            <!-- <label>choose:</label>
         <select id="cars">
             <option value="volvo">Volvo</option>
             <option value="saab">Saab</option>
             <option value="mercedes">Mercedes</option>
             <option value="audi">Audi</option>
           </select> -->
-</div>
-<select >
-    <option value = "hani">hani</option>
-    <!-- <option *ngFor = "let name of nameInput" [value] = "name">{{name}}</option> -->
-</select>
-<div *ngIf ="showMarks" class = "div-right" >
-   
-    <label class = "select-menu">Choose one of them for comparing your marks:</label>
-    <ng-select [items]="nameInput"
-              
-               placeholder="Select Student"
-               class = "select-menu"
-               [(ngModel)] = "selectTemp"
-               (change) = "selectedStudentMarks(selectTemp)"
-               
-               >
-    </ng-select>
-   
-       
-    <google-chart #chart
-   [title]="title"
-   [type]="type"
-   [data]="data"
-   [columnNames]="columnNames"
-   [options]="options"
-   [width]="width"
-   [height]="height">
-</google-chart>
+        </div>
+        <button (click)="printPage()">print</button>
+    </div>
+    <div class="col-md-6 div-left">
+
+        <div *ngIf="showMarks">
+             <button (click) = "checkShowChart()" class = "btn-back">Back To Main Chart</button>
+
+            <label class="select-menu">Choose one of them for comparing your marks:</label>
+            <ng-select [items]="nameInput" placeholder="Select Student" class="select-menu" [(ngModel)]="selectTemp"
+                (change)="selectedStudentMarks(selectTemp)">
+            </ng-select>
+           
+            <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames"
+                [options]="options" [width]="width" [height]="height">
+            </google-chart>
+            
+
+        </div>
+        <div *ngIf="!showMarks ">
+
+            <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames"
+                [options]="options" [width]="width" [height]="height">
+
+            </google-chart>
+
+        
+        
+        <div class="checkboxxx">
+            <div class=" custom-control custom-checkbox div-checkbox" *ngFor="let name of columnsData ;let i = index" [attr.data-index]="i">
+                <input type="checkbox"   class="custom-control-input checkbox-h "
+                id = "{{i}}"  value={{name.name}} name="student"  (change) = "checkHideShowGraph($event)" [checked] = "name.checked"/>
+             <label class="custom-control-label checkbox-input " for ="{{i}}" >{{name.name}}</label>
+            
+            </div><br>
+            <br>
+
+            <!-- <div class=" custom-control custom-checkbox div-checkbox" *ngFor="let name of names ;let i = index" [attr.data-index]="i">
+                <input type="checkbox"   class="custom-control-input checkbox-h "
+                id = "{{i}}"  value={{name.name}} name="student"  (change) = "checkShowGraph($event)" [checked] = "name.checked"/>
+             <label class="custom-control-label checkbox-input " for ="{{i}}" >{{name.name}}</label>
+            
+            </div> -->
+
+
+            <!-- <ng-container *ngFor="let ntrd of nontrade" class=" custom-control custom-checkbox div-checkbox">
+                <label class="custom-control-label checkbox-input ">
+                  <input type="checkbox" class="custom-control-input checkbox-h " name="nontrades" [checked]="ntrd.selected" (change)="changeTradesByCategory($event)">{{ ntrd.label }}
+                </label>&nbsp;
+              </ng-container> -->
+        
+              <!-- <div class=" custom-control custom-checkbox div-checkbox">
+                <input class="form-check-input" type="checkbox" class="custom-control-input checkbox-h " (change)="selectAll()" [checked]="selectedAll">
+                <label class="custom-control-label checkbox-input ">
+                    Select All
+                  </label>
+            </div>
+            <div class=" custom-control custom-checkbox div-checkbox" *ngFor="let n of names">
+                <input class="form-check-input" type="checkbox" class="custom-control-input checkbox-h " value="{{n.name}}" [(ngModel)]="n.selected" (change)="checkIfAllSelected()">
+                <label class="custom-control-label checkbox-input ">
+                    {{n.name}}
+                  </label>
+            </div> -->
+            <!-- <div class="custom-control custom-checkbox" *ngFor="let data of employeeForm.get('skills').controls; 
+                  let j = index" formArrayName="skills">
+                    <div [formGroupName]="j">
+                      <input type="checkbox" (change)="onSkillChange( data.id ,$event.target.checked,$event)" name="skills"
+                        formControlName="checked"> {{data.value.name}}<br>
+                    </div>
+                  </div>
+                </div>
+            </div> -->
+           
+            <!-- <div class="custom-control custom-checkbox mb-3">
+        <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+        <label class="custom-control-label" for="customCheck">Custom checkbox</label>
+      </div> -->
+        </div>
+    </div>
+
+    
 </div>

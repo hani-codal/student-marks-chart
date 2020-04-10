@@ -14,4 +14,5 @@ import { AdminComponent } from './admin/admin.component';
     AuthRoutingModule
   ]
 })
-export class AuthModule { }
+export class AuthModule {
+}

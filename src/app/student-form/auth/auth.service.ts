@@ -40,8 +40,8 @@ getEmail(){
 //    }
 //  }
  checkUser(uname :string,pwd: string){
-  if(uname == "admin" && pwd =="admin123"){
-    localStorage.setItem('username',"admin");
+  if(uname == "hani" && pwd =="hani-codal"){
+    localStorage.setItem('username',"hani");
     return true;
     }
     else{
