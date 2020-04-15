@@ -1,3 +1,5 @@
+
+
 .div-header{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -42,9 +44,54 @@ thead{
 }
 .div-left{
     margin-left: 10px;
-    width: 600px;
+    width: 400px;
     float: left;
 }
+.btn-lft{
+    margin-left: 500px;
+    font-size: 15px;
+    font-weight: 500;
+}
 .div-right{
-    margin-left: 620px;
+    margin-left: 10px;
+
+}
+.select-menu{
+    margin-left: 100px;
+    font-size: 15px;   
+}
+ng-select{
+    width: 350px;
+}
+.checkbox-input{
+    font-size: 10px;
+}
+.div-checkbox{
+   margin-left: 20px;
+   display: inline;
+    
+}
+.checkboxxx{
+    margin-left: 100px;
+}
+.btn-back{
+    margin-left:500px;
+    font-size: 12px;
+}
+
+@media print{
+
+  input[type=checkbox]:checked  :after {
+    
+  }
+  .noprint
+    {
+        display: none;
+    }
+    
+}
+
+@media screen
+{
+
 }

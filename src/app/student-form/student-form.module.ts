@@ -7,16 +7,24 @@ import { StudentFormComponent } from './student-form.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-  declarations: [StudentFormComponent,MarksChartComponent, StudentListComponent],
+  declarations: [StudentFormComponent,MarksChartComponent, StudentListComponent, FooterComponent, HeaderComponent],
   imports: [
     CommonModule,
     StudentFormRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    NgSelectModule
+  ],
+  exports:[
+    FooterComponent,
+    HeaderComponent
   ]
 })
 export class StudentFormModule { }

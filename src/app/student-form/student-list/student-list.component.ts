@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import{AuthService} from '../auth/auth.service';
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-list.component.html',
@@ -11,7 +11,8 @@ export class StudentListComponent implements OnInit {
   name :string[] = [];
   totalMarks:number[] = [];
   marks:number[] = [];
-  constructor() { }
+  email;
+  constructor(private as:AuthService) { }
 
   ngOnInit(): void {
     console.log("lissssst",this.studentList)
@@ -19,6 +20,8 @@ export class StudentListComponent implements OnInit {
       this.name.push(e.name);
       this.marks.push(e.marks);
     });
+this.email = this.as.getEmail();
+console.log(this.email)
 
     this.studentList.forEach(e => {
 

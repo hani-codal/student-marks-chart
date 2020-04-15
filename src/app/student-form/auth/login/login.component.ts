@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-
+import{AuthService} from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,28 +11,40 @@ export class LoginComponent implements OnInit {
   auth2: any;
  
   @ViewChild('loginRef', {static: true }) loginElement: ElementRef;
- 
-  constructor(private router: Router  ) { }
+
+
+  constructor(private router: Router,private authService :AuthService ,private routes :Router,private ngZone: NgZone ) { }
  
   ngOnInit() {
- 
+    
     this.googleSDK();
+    
   }
 
  //for pop up dialog box
-
+ profile:any;
+ e;
   prepareLoginButton() {
  
     this.auth2.attachClickHandler(this.loginElement.nativeElement, {},
       (googleUser) => {
  
-        let profile = googleUser.getBasicProfile();
+        this.profile = googleUser.getBasicProfile();
         console.log('Token || ' + googleUser.getAuthResponse().id_token);
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        window.location.assign(`/student-list`);  
+        console.log('ID: ' + this.profile.getId());
+        //this.authService.setGoogleEmail(this.profile.getEmail());
+        console.log('Name: ' + this.profile.getName());
+        console.log('Image URL: ' +this. profile.getImageUrl());
+        console.log('Email: ' +this.profile.getEmail());
+        this.check(this.profile.getEmail());
+       //this.e= this.authService.getEmail();
+       //console.log(this.e)
+       //if(this.e == this.profile.getEmail()){
+       // window.location.assign(`/student-list`); 
+      // } 
+      //  else{
+      //    alert("you do not have permission")
+      //  }
         //YOUR CODE HERE
  
  
@@ -41,6 +53,22 @@ export class LoginComponent implements OnInit {
       });
  
   }
+  msg :any;
+  check(email : string)
+    {
+      console.log("eeeeeeeeeeeee",email)
+      var output = this.authService.checkLoggedUser(email);
+      if(output == true)
+      {
+       // this.routes.navigate(['/student-list']);
+        this.ngZone.run(() => this.router.navigate(['/student-list'])).then();
+        
+      }
+      else{
+       this.msg ='Invalid ';
+       alert(this.msg)
+      }
+    }
   // load google platform
   googleSDK() {
  

@@ -1,50 +1,108 @@
-<div>
+<link rel="stylesheet" href="marks-chart.component.css" type="text/css" media="print">
+
+<link rel="stylesheet" href="marks-chart.component.css" type="text/css" media="screen">
+
+<div class = "noprint">
     <button class="btn-submit btn-lbl " routerLink="/student-form">Add Student</button>
 </div><br>
-<div class="div-header">
+<div class="div-header noprint ">
     Student Information
 </div>
-<div class = "div-left">
-    <table>
-        <thead>
-            <th>Index</th>
-            <th>Name</th>
-            <th>Total</th>
-        </thead>
-        <tbody>
+<div class="row  ">
+    <div class="col-md-4 div-left noprint">
+        <div>
+            <table>
+                <thead>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Total</th>
+                </thead>
+                <tbody>
 
-            <td>
-                <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd">
-                    {{i+1}}
-                </div>
-            </td>
+                    <td>
+                        <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd">
+                            {{i+1}}
+                        </div>
+                    </td>
 
-            <td>
-                <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd" >
-                    <button (click) = "displayMarks();showGraph(i)" data-toggle="tooltip" data-placement="bottom" title="click here to display marks">
-                    {{n}}
-                    </button>
-                </div>
-            </td>
+                    <td>
+                        <div *ngFor="let n of nameInput; let i = index" [attr.data-index]="i" class="tdd">
+                            <button (click)="displayMarks();showGraph(i)" data-toggle="tooltip" data-placement="bottom"
+                                title="click here to display marks">
+                                {{n}}
+                            </button>
+                        </div>
+                    </td>
 
-            <td>
-                <div *ngFor='let m of marksInput ' class="tdd">
-                    {{m}}
-                </div>
-            </td>
+                    <td>
+                        <div *ngFor='let m of marksInput ' class="tdd">
+                            {{m}}
+                        </div>
+                    </td>
 
-        </tbody>
-    </table>
-</div>
-<div *ngIf ="showMarks" class = "div-right" >
+
+                </tbody>
+            </table>
+
+            <!-- <label>choose:</label>
+        <select id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select> -->
+        </div>
+        
+    </div>
+    <div class="col-md-6 div-left">
+        <button class = " btn-lft noprint"  (click)="printPage()">print</button>
+        <div *ngIf="showMarks">
+             <button (click) = "checkShowChart()" class = "btn-back noprint">Back To Main Chart</button>
+
+            <label class="select-menu">Choose one of them for comparing your marks:</label>
+            <ng-select [items]="nameInput" placeholder="Select Student" class="select-menu" [(ngModel)]="selectTemp"
+                (change)="selectedStudentMarks(selectTemp)">
+            </ng-select>
+           
+            <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames"
+                [options]="options" [width]="width" [height]="height">
+            </google-chart>
+
+            <div class="checkboxxx ">
+                <div class=" custom-control custom-checkbox div-checkbox " *ngFor="let name of columnStudent ;let i = index" [attr.data-index]="i">
+                    <input type="checkbox"   class="custom-control-input checkbox-h with-gap"
+                    id = "{{i}}"  value={{name.name}} name="student"  (change) = "checkHideShowStudentGraph($event)"  [checked] = "name.checked"/>
+                 <label class="custom-control-label checkbox-input " for ="{{i}}" >{{name.name}}</label>
+                
+                </div><br>
+                <br>
     
-    <google-chart #chart
-   [title]="title"
-   [type]="type"
-   [data]="data"
-   [columnNames]="columnNames"
-   [options]="options"
-   [width]="width"
-   [height]="height">
-</google-chart>
+              
+            </div>
+            
+
+        </div>
+        <div *ngIf="!showMarks ">
+
+            <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames"
+                [options]="options" [width]="width" [height]="height">
+
+            </google-chart>
+
+        
+        
+        <div class="checkboxxx ">
+            <div class=" custom-control custom-checkbox div-checkbox " *ngFor="let name of columnsData ;let i = index" [attr.data-index]="i">
+                <input type="checkbox"   class="custom-control-input checkbox-h with-gap"
+                id = "{{i}}"  value={{name.name}} name="student"  (change) = "checkHideShowGraph($event)"  [checked] = "name.checked"/>
+             <label class="custom-control-label checkbox-input " for ="{{i}}" >{{name.name}}</label>
+            
+            </div><br>
+            <br>
+
+          
+        </div>
+    </div>
+
+    
 </div>
