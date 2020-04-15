@@ -1,3 +1,5 @@
+
+
 .div-header{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -45,6 +47,11 @@ thead{
     width: 400px;
     float: left;
 }
+.btn-lft{
+    margin-left: 500px;
+    font-size: 15px;
+    font-weight: 500;
+}
 .div-right{
     margin-left: 10px;
 
@@ -70,4 +77,21 @@ ng-select{
 .btn-back{
     margin-left:500px;
     font-size: 12px;
+}
+
+@media print{
+
+  input[type=checkbox]:checked  :after {
+    
+  }
+  .noprint
+    {
+        display: none;
+    }
+    
+}
+
+@media screen
+{
+
 }

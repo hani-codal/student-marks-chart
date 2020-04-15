@@ -20,6 +20,7 @@ export class AuthService {
     
    // this.Email = (email);
     console.log(this.Email,"eeeeeeeeeeeeeeee")
+
     //if(this.Email ==email){
      console.log(email,"hello i am service email");
  // }//
@@ -48,14 +49,16 @@ getEmail(){
       return false;
     }
       }
-    // checkLoggedUser(email :string){
-    //   if(email != ''){
-    //     localStorage.setItem('loggeduser',email);
-    //     return true;
-    //   }
-    //   else{
-    //     return false;
-    //   }
-    // }
+
+    checkLoggedUser(email :string){
+      console.log("checked mail in service",email)
+      if(email == "hjoshi@codal.com"){
+        localStorage.setItem('loggeduser',email);
+        return true;
+      }
+      else{
+        return false;
+      }
+    }
  }
 

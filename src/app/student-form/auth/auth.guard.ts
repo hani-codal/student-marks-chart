@@ -18,8 +18,8 @@ export class AuthGuard implements CanActivate {
   //     alert("u don't have permission to view this page,Redirecting to home...");
   //     this.router.navigate(['login'])
   //   }
-
-  if(localStorage.getItem('username')!= null){
+      
+  if( localStorage.getItem('username')!= null ){
     console.log("auth guard called....with authorised user ")
     localStorage.removeItem('username') ;
     console.log("item")

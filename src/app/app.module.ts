@@ -7,6 +7,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { AuthService } from './student-form/auth/auth.service';
 import { AuthGuard } from './student-form/auth/auth.guard';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { StudentFormModule } from './student-form/student-form.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,8 +18,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     ReactiveFormsModule,
     FormsModule,
     GoogleChartsModule,
-    NgSelectModule
+    NgSelectModule,
+    StudentFormModule
   ],
+ 
   providers: [AuthGuard,AuthService],
   bootstrap: [AppComponent]
 })

@@ -6,6 +6,7 @@ import { StudentListComponent } from './student-form/student-list/student-list.c
 import { LoginComponent } from './student-form/auth/login/login.component';
 import { AuthGuard } from './student-form/auth/auth.guard';
 import { AdminComponent } from './student-form/auth/admin/admin.component';
+import { AuthLoginGuard } from './student-form/auth/auth-login.guard';
 
 const routes: Routes = [
   // {
@@ -19,7 +20,9 @@ const routes: Routes = [
       },
   {
     path :'student-list',
-    component:StudentListComponent 
+    component:StudentListComponent ,
+    canActivate:[AuthLoginGuard]
+
   },
     
       {
