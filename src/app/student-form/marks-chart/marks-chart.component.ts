@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,ElementRef, ViewChild  } from '@angular/core';
 import { NgSelectModule, NgOption } from '@ng-select/ng-select';
 import { stringify } from '@angular/compiler/src/util';
-
+declare let html2canvas: any;
 
 @Component({
   selector: 'app-marks-chart',
@@ -13,7 +13,9 @@ export class MarksChartComponent implements OnInit {
   @Input() nameInput: string[];
   @Input() marksInput: number[];
   @Input() subjectMarks: number[];
- 
+  
+capturedImage ;
+
   showMarks = false;
   title: any;
   width = 650;
@@ -42,12 +44,29 @@ export class MarksChartComponent implements OnInit {
   dataTemp :any[] =[];
   columnStudent : any[] = [];
   dataStudent : any[] =[];
+  showIcons = true;
+  printValue : any;
+  noCheckbox :boolean = false;
+  
+
   constructor() { }
 
   //for ngOninit()
 
   ngOnInit(): void {
+    
     this.getMainGraph();
+  }
+
+  //for share icons
+
+  checkIcons(){
+    if(this.showIcons){
+      this.showIcons = false;
+    }
+    else{
+      this.showIcons =true;
+    }
   }
   
   //for hide and show graph
@@ -132,7 +151,7 @@ export class MarksChartComponent implements OnInit {
       }
     });
     console.log(this.columnNames)
-
+   
   }
 //all listed students resultant graph
 
@@ -248,10 +267,10 @@ export class MarksChartComponent implements OnInit {
       },
       this.dataStudent.push(temp3);       
   }
-  console.log(this.dataStudent)
+  console.log(this.columnStudent)
   }
   printPage(){
-    window.print();
+   window.print();
   }
   //for dropdown selected students 
 
@@ -284,6 +303,54 @@ export class MarksChartComponent implements OnInit {
     this.dataStudent.push(temp3); 
     console.log(this.dataStudent)
   }
+
+
+
+// for img
+
+  clickme() {
+  html2canvas(document.querySelector("#capture")).then(canvas => {   
+
+    
+    this.capturedImage = canvas.toDataURL('image/png', 0.1);
+    console.log("canvas.toDataURL() -->" + this.capturedImage);
+    // this will contain something like (note the ellipses for brevity), console.log cuts it off 
+    // "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAa0AAAB3CAYAAACwhB/KAAAXr0lEQVR4Xu2dCdiNZf7HP/ZQkpQtaUxDjYYoTSYlURMhGlmKa..."
+
+    
+    canvas.toBlob(function (blob) {
+      
+      //  just pass blob to something expecting a blob
+      // somfunc(blob);
+
+      // Same as canvas.toDataURL(), just longer way to do it.
+      var reader = new FileReader();
+      
+      reader.readAsDataURL(blob);
+      reader.onloadend = function () {
+        let base64data = reader.result;
+        console.log("Base64--> " + base64data);
+      }
+
+  //     const byteString = window.atob(blob);
+  //  const arrayBuffer = new ArrayBuffer(byteString.length);
+  //  const int8Array = new Uint8Array(arrayBuffer);
+  //  for (let i = 0; i < byteString.length; i++) {
+  //    int8Array[i] = byteString.charCodeAt(i);
+  //  }
+  //  const blobtemp = new Blob([int8Array], { type: 'image/jpeg' });    
+  //  return blobtemp;
+     });
+    //  var fd = new FormData();
+    //  fd.append(‘access_token’, $scope.facebook.authToken);
+    //  fd.append(‘source’, blob);
+    //  fd.append(‘message’, $scope.canvas.background.getCaption());
+
+  });
+  // alert("sure")
+  // this.printPage();
+}
+ 
 }
 
 //trial

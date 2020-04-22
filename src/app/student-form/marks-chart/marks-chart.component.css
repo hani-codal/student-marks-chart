@@ -46,11 +46,26 @@ thead{
     margin-left: 10px;
     width: 400px;
     float: left;
+    
 }
 .btn-lft{
     margin-left: 500px;
     font-size: 15px;
     font-weight: 500;
+   
+}
+.btn-left{
+    margin-left: 500px;
+}
+.btn-leftt{
+    margin-left: 200px;
+}
+.btn-lft-icn{
+    margin-left: 300px;
+    
+    font-size: 15px;
+    font-weight: 500;
+    display: inline;
 }
 .div-right{
     margin-left: 10px;
@@ -78,15 +93,25 @@ ng-select{
     margin-left:500px;
     font-size: 12px;
 }
-
+img{
+    float: left;
+    margin-right: 10px;
+}
+.span-img{
+    float: left;
+    margin-right: 10px;
+}
 @media print{
 
-  input[type=checkbox]:checked  :after {
-    
+  input[type=checkbox]:checked  :after + img {
+    display: inline;
   }
   .noprint
     {
         display: none;
+    }
+    .printImg{
+        display: inline;
     }
     
 }

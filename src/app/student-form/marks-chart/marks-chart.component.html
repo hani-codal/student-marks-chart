@@ -2,12 +2,16 @@
 
 <link rel="stylesheet" href="marks-chart.component.css" type="text/css" media="screen">
 
-<div class = "noprint">
+<div class="noprint">
     <button class="btn-submit btn-lbl " routerLink="/student-form">Add Student</button>
 </div><br>
+<!-- <button><i class="fas fa-share-alt"></i></button> -->
+
+
 <div class="div-header noprint ">
     Student Information
 </div>
+<!-- <img   src = {{capturedImage}}/> -->
 <div class="row  ">
     <div class="col-md-4 div-left noprint">
         <div>
@@ -52,36 +56,67 @@
             <option value="audi">Audi</option>
           </select> -->
         </div>
-        
+
     </div>
-    <div class="col-md-6 div-left">
-        <button class = " btn-lft noprint"  (click)="printPage()">print</button>
+    <div class="col-md-6 div-left ">
+
+        <button class=" noprint btn-left" (click)="checkIcons()"><i class="fas fa-share-alt"></i></button>
+        <!-- <button (click)="clickme()">Capture thing in orange</button> -->
+        <!-- <div id = "capture">
+    <h1>hani</h1>
+</div>         -->
+
+        <!-- <span class = " btn-lft noprint" ><i class="fas fa-share-alt"></i></span> -->
+        <button class=" noprint" (click)=" printPage()">print</button>
+
+        <!-- for capturing checkbox images -->
+        
+        <!-- <button (click)="clickme()" class="noprint">Capture checkbox only</button>
+        <h2 class="noprint">Captured Image</h2>
+        <img src={{capturedImage}}><br> -->
+        <div *ngIf="!showIcons">
+            <share-buttons class="btn-leftt  noprint" theme="material-dark" show="11"
+                [include]="['facebook','whatsapp','linkedin','twitter']" [url]="'https://loremflickr.com/320/240'">
+            </share-buttons>
+        </div>
         <div *ngIf="showMarks">
-             <button (click) = "checkShowChart()" class = "btn-back noprint">Back To Main Chart</button>
+            <button (click)="checkShowChart()" class="btn-back noprint">Back To Main Chart</button>
 
             <label class="select-menu">Choose one of them for comparing your marks:</label>
             <ng-select [items]="nameInput" placeholder="Select Student" class="select-menu" [(ngModel)]="selectTemp"
                 (change)="selectedStudentMarks(selectTemp)">
             </ng-select>
-           
+
             <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames"
                 [options]="options" [width]="width" [height]="height">
             </google-chart>
-
-            <div class="checkboxxx ">
-                <div class=" custom-control custom-checkbox div-checkbox " *ngFor="let name of columnStudent ;let i = index" [attr.data-index]="i">
-                    <input type="checkbox"   class="custom-control-input checkbox-h with-gap"
-                    id = "{{i}}"  value={{name.name}} name="student"  (change) = "checkHideShowStudentGraph($event)"  [checked] = "name.checked"/>
-                 <label class="custom-control-label checkbox-input " for ="{{i}}" >{{name.name}}</label>
-                
+            <!-- <img src = "\assets\checkbox.png" height = "15px" width = "15px"/> -->
+            <div class="checkboxxx  " id="capture">
+                <div class=" custom-control custom-checkbox div-checkbox noprint "
+                    *ngFor="let name of columnStudent ;let i = index" [attr.data-index]="i">
+                    <input type="checkbox" class="custom-control-input checkbox-h with-gap" id="{{i}}"
+                        value={{name.name}} name="student" (change)="checkHideShowStudentGraph($event)"
+                        [checked]="name.checked" />
+                    <label class="custom-control-label checkbox-input " for="{{i}}">{{name.name}}</label>
+                    <!-- <span *ngIf = "name.checked" ><img src = "\assets\checkbox.png"  height = "15px" width = "15px"/><span class = "span-img">{{name.name}}</span></span> -->
                 </div><br>
-                <br>
-    
-              
+                <br><br><br>
+                <h5 class = "noprint">checked checkboxes will be displayed here</h5>
+                <div *ngFor="let name of columnStudent ;let i = index" [attr.data-index]="i">
+                    <span *ngIf = "name.checked "   >
+                        <img src = "\assets\checkbox.png"  height = "15px" width = "15px"/>
+                        <span class = "span-img">{{name.name}}</span>
+                    </span>
+                
+            </div>
+
             </div>
             
+            
+
 
         </div>
+
         <div *ngIf="!showMarks ">
 
             <google-chart #chart [title]="title" [type]="type" [data]="data" [columnNames]="columnNames"
@@ -89,20 +124,38 @@
 
             </google-chart>
 
-        
-        
-        <div class="checkboxxx ">
-            <div class=" custom-control custom-checkbox div-checkbox " *ngFor="let name of columnsData ;let i = index" [attr.data-index]="i">
-                <input type="checkbox"   class="custom-control-input checkbox-h with-gap"
-                id = "{{i}}"  value={{name.name}} name="student"  (change) = "checkHideShowGraph($event)"  [checked] = "name.checked"/>
-             <label class="custom-control-label checkbox-input " for ="{{i}}" >{{name.name}}</label>
+
+
+            <div class="checkboxxx  " id="capture">
+                <div class=" custom-control custom-checkbox div-checkbox noprint "
+                    *ngFor="let name of columnsData ;let i = index" [attr.data-index]="i">
+                    <input type="checkbox" class="custom-control-input checkbox-h with-gap " id="{{i}}"
+                        value={{name.name}} name="student" (change)="checkHideShowGraph($event)"
+                        [checked]="name.checked" />
+                    <label class="custom-control-label checkbox-input  " for="{{i}}">{{name.name}}</label>
+                    
+                        <!-- <span *ngIf = "name.checked "   >
+                            <img src = "\assets\checkbox.png"  height = "15px" width = "15px"/>
+                            <span class = "span-img">{{name.name}}</span>
+                        </span> -->
+                    
+                </div><br>
+                <br><br><br><br>
+                <h5 class = "noprint">checked checkboxes will be displayed here</h5>
+                <div *ngFor="let name of columnsData ;let i = index" [attr.data-index]="i">
+                    <span *ngIf = "name.checked "   >
+                        <img src = "\assets\checkbox.png"  height = "15px" width = "15px"/>
+                        <span class = "span-img">{{name.name}}</span>
+                    </span>
+                
+            </div>
+
+
+            </div>
+
             
-            </div><br>
-            <br>
 
-          
         </div>
-    </div>
 
-    
-</div>
+
+    </div>
