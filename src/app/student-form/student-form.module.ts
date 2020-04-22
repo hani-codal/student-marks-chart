@@ -10,6 +10,9 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [StudentFormComponent,MarksChartComponent, StudentListComponent, FooterComponent, HeaderComponent],
@@ -20,7 +23,11 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     NgbModule,
     GoogleChartsModule,
-    NgSelectModule
+    NgSelectModule,
+    ShareButtonsModule,
+      ShareIconsModule,
+    HttpClientModule,       // (Required) For share counts
+    HttpClientJsonpModule,
   ],
   exports:[
     FooterComponent,
